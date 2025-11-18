@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles3.css') }}">
+
+
+    <header>
+        <div><strong>CampusConnect</strong></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Login</a>
+            <a href="#">Help</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1>WELCOME TO COURSE REGISTRATION</h1>
+
+        <div class="menu-button">
+            <h2>Search Courses</h2>
+            <p> 🔍 Find available courses</p>
+        </div>
+
+        
+         <div class="menu-button">
+            <h2>Student Registration</h2>
+            <p> 📝 Register for your upcoming semester</p>
+        </div>
+       
+        <div class="menu-button">
+            <h2>Instructor Schedules</h2>
+            <p> 📅 Review Instructor availability and timetable</p>
+        </div>
+    </main>
+
+<div style="margin-top:16px; display:flex; gap:10px;">
+  <a href="{{ url_for('login') }}" class="btn" style="background:#1ED900;color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;">Student Login</a>
+  <a href="{{ url_for('admin_login') }}" class="btn" style="background:#1E3A8A;color:#fff;padding:10px 14px;border-radius:10px;text-decoration:none;">Admin Login</a>
+</div>
+
+{% endblock %}

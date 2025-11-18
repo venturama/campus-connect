@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  
+<header>
+  <!-- has name logo and navigation links -->
+  <div class="header-wrap">
+    <div class="brand">CampusConnect</div>
+    <!-- Navigation -->
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">Login</a>
+      <a href="#">Help</a>
+    </nav>
+  </div>
+</header>
+
+  <main class="main">
+    <h1 style="color:var(--blue);">Course Search</h1>
+
+    <div class="section">
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:10px; justify-content:center;">
+        <!-- Department search -->
+        <input id="qDept" placeholder="Department (e.g., INFO, CSCI)">
+        <!-- course number search -->
+        <input id="qNum" placeholder="Course # (e.g., 361)">
+        <!-- Instructor search -->
+        <input id="qInstr" placeholder="Instructor (e.g., Lee)">
+        <!-- search button -->
+        <button id="btnSearch" class="btn-blue">Search</button>
+        <!-- reset button  -->
+        <button id="btnReset" class="btn-warning">Reset</button>
+        <span id="info" class="muted" style="min-width:80px;"></span>
+      </div>
+      <div id="resultsBox" style="display:none">      <table>
+        <thead>
+          <tr>
+            <th>Dept</th><th>#</th><th>Title</th><th>Instructor</th><th>Credits</th><th>Seats</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="results"></tbody>
+      </table>      </div>
+    </div>
+  </main>
+  <!-- Java programs for the course data and search feature  -->
+  <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+
+{% endblock %}
