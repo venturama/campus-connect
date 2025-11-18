@@ -1,0 +1,85 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_RegSess.css') }}">
+<header class="header">
+  <h1>Billing & Payment</h1>
+  <p>Logged in as: <strong>{{ student_name }} (ID: {{ student_id }})</strong></p>
+</header>
+
+<section class="section-box">
+  <h2>Enrollment & Tuition Summary</h2>
+  {% if enrolled %}
+  <table>
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Title</th>
+        <th>Credits</th>
+        <th>Tuition</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in enrolled %}
+      <tr>
+        <td>{{ c['dept'] }} {{ c['number'] }} ({{ c['id'] }})</td>
+        <td>{{ c['title'] }}</td>
+        <td>{{ c['credits'] }}</td>
+        <td>${{ "%.2f"|format(c['tuition_fee']) }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p><strong>Total Tuition (current enrollment):</strong> ${{ "%.2f"|format(amount_due) }}</p>
+  {% else %}
+  <p>You are not enrolled in any courses.</p>
+  {% endif %}
+</section>
+
+<section class="section-box">
+  <h2>Payment Status</h2>
+  <p><strong>Status:</strong> {{ payment_status }}</p>
+  <p><strong>Total Paid:</strong> ${{ "%.2f"|format(total_paid) }}</p>
+  {% if last_payment %}
+    <p class="muted">
+      Last Payment: ${{ "%.2f"|format(last_payment['amount_paid']) }}
+      via {{ last_payment['payment_method'] }} on {{ last_payment['paid_at'] }}
+    </p>
+  {% endif %}
+</section>
+
+
+{% if amount_due > 0 and payment_status != "PAID" %}
+  <section class="section-box" style="margin-top:20px;">
+    <h2>Make a Payment</h2>
+    <form method="post" action="{{ url_for('pay') }}" style="display:grid;gap:10px;max-width:420px;">
+      <label>
+        Payment Method
+        <select name="payment_method" required>
+          <option value="Credit Card">Credit Card</option>
+          <option value="Debit Card">Debit Card</option>
+          <option value="Bank Transfer">Bank Transfer</option>
+        </select>
+      </label>
+      <label>
+        Card Number
+        <input type="text" name="card_number" maxlength="19" required>
+      </label>
+      <label>
+        Expiration Date (MM/YY)
+        <input type="text" name="exp_date" placeholder="MM/YY" required>
+      </label>
+      <label>
+        CVV
+        <input type="text" name="cvv" maxlength="4" required>
+      </label>
+      <label>
+        Billing ZIP Code
+        <input type="text" name="zip_code" maxlength="10" required>
+      </label>
+      <button class="btn proceed" type="submit">Submit Payment</button>
+    </form>
+  </section>
+{% endif %}
+
+{% endblock %}

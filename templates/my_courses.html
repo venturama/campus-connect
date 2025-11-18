@@ -6,10 +6,20 @@
   <h1>Student Registration</h1>
   <p>Logged in as: <strong>{{ student_name }} (ID: {{ student_id }})</strong></p>
 </header>
+
 <section class="section-box">
   <h2>Enrolled Sessions</h2>
   <table>
-    <thead><tr><th>Course</th><th>Title</th><th>Credits</th><th>Instructor</th><th>Schedule</th><th>Action</th></tr></thead>
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Title</th>
+        <th>Credits</th>
+        <th>Instructor</th>
+        <th>Schedule</th>
+        <th>Action</th>
+      </tr>
+    </thead>
     <tbody>
       {% if enrolled %}
         {% for c in enrolled %}
@@ -27,7 +37,7 @@
         </tr>
         {% endfor %}
       {% else %}
-        <tr><td colspan="6" class="muted">No courses yet. Use Course Search to register.</td></tr>
+        <tr><td colspan="6">You are not enrolled in any courses.</td></tr>
       {% endif %}
     </tbody>
   </table>
@@ -36,23 +46,41 @@
 <section class="section-box">
   <h2>Available Sessions</h2>
   <table>
-    <thead><tr><th>Course</th><th>Title</th><th>Credits</th><th>Instructor</th><th>Schedule</th><th>Seats</th><th>Action</th></tr></thead>
-    <tbody>
-      {% for c in available %}
+    <thead>
       <tr>
-        <td>{{ c['dept'] }} {{ c['number'] }}</td>
-        <td>{{ c['title'] }}</td>
-        <td>{{ c['credits'] }}</td>
-        <td>{{ c['instructor'] }}</td>
-        <td>{{ c['when_text'] }}</td>
-        <td>{{ c['seatsUsed'] }}/{{ c['max'] }}</td>
-        <td>
-          <form method="post" action="{{ url_for('register', course_id=c['id']) }}">
-            <button class="btn proceed" type="submit">Register</button>
-          </form>
-        </td>
+        <th>Course</th>
+        <th>Title</th>
+        <th>Credits</th>
+        <th>Instructor</th>
+        <th>Schedule</th>
+        <th>Seats</th>
+        <th>Action</th>
       </tr>
-      {% endfor %}
+    </thead>
+    <tbody>
+      {% if available %}
+        {% for c in available %}
+        <tr>
+          <td>{{ c['dept'] }} {{ c['number'] }}</td>
+          <td>{{ c['title'] }}</td>
+          <td>{{ c['credits'] }}</td>
+          <td>{{ c['instructor'] }}</td>
+          <td>{{ c['when_text'] }}</td>
+          <td>{{ c['seatsUsed'] }}/{{ c['max'] }}</td>
+          <td>
+            {% if c['seatsUsed'] >= c['max'] %}
+              <span class="muted">Course Full</span>
+            {% else %}
+              <form method="post" action="{{ url_for('register', course_id=c['id']) }}">
+                <button class="btn proceed" type="submit">Register</button>
+              </form>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <tr><td colspan="7">No available sessions.</td></tr>
+      {% endif %}
     </tbody>
   </table>
 </section>
