@@ -1,0 +1,59 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style_RegSess.css') }}">
+<header class="header">
+  <h1>Student Registration</h1>
+  <p>Logged in as: <strong>{{ student_name }} (ID: {{ student_id }})</strong></p>
+</header>
+<section class="section-box">
+  <h2>Enrolled Sessions</h2>
+  <table>
+    <thead><tr><th>Course</th><th>Title</th><th>Credits</th><th>Instructor</th><th>Schedule</th><th>Action</th></tr></thead>
+    <tbody>
+      {% if enrolled %}
+        {% for c in enrolled %}
+        <tr>
+          <td>{{ c['dept'] }} {{ c['number'] }}</td>
+          <td>{{ c['title'] }}</td>
+          <td>{{ c['credits'] }}</td>
+          <td>{{ c['instructor'] }}</td>
+          <td>{{ c['when_text'] }}</td>
+          <td>
+            <form method="post" action="{{ url_for('drop', course_id=c['id']) }}">
+              <button class="btn cancel" type="submit">Drop</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      {% else %}
+        <tr><td colspan="6" class="muted">No courses yet. Use Course Search to register.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</section>
+
+<section class="section-box">
+  <h2>Available Sessions</h2>
+  <table>
+    <thead><tr><th>Course</th><th>Title</th><th>Credits</th><th>Instructor</th><th>Schedule</th><th>Seats</th><th>Action</th></tr></thead>
+    <tbody>
+      {% for c in available %}
+      <tr>
+        <td>{{ c['dept'] }} {{ c['number'] }}</td>
+        <td>{{ c['title'] }}</td>
+        <td>{{ c['credits'] }}</td>
+        <td>{{ c['instructor'] }}</td>
+        <td>{{ c['when_text'] }}</td>
+        <td>{{ c['seatsUsed'] }}/{{ c['max'] }}</td>
+        <td>
+          <form method="post" action="{{ url_for('register', course_id=c['id']) }}">
+            <button class="btn proceed" type="submit">Register</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
