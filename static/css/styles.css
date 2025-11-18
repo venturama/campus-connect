@@ -1,0 +1,37 @@
+main {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    min-height: 80vh;
+    text-align: center;
+    flex-wrap: wrap;
+}
+.section{
+   margin: 30px auto;
+   padding: 25px;
+   max-width: 600px;
+}
+.menu-button{
+    width: 100%;
+    background-color: white;
+    color: #1E3A8A;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: left;
+    font-size: 1em;
+    cursor: pointer;
+}
+.menu-button h2{
+    margin:0;
+    font-size:1.2em;
+}
+.menu-button p {
+    margin:8px 0 0;
+    font-size: 0.9em;
+    color: #000;
+}
+
+

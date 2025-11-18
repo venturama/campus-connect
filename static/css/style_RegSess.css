@@ -1,0 +1,200 @@
+/* Reset + Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #EBEBEB;
+  color: #333;
+}
+
+/* Tab Bar */
+.tab-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1E3A8A;
+  padding: 15px 25px;
+  color: white;
+}
+
+.tab-brand {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.tab-links {
+  display: flex;
+  gap: 20px;
+}
+
+.tab-links a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.tab-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Header */
+.header {
+  background-color: white;
+  padding: 30px;
+  margin: 25px auto 0;
+  max-width: 1000px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.header h1 {
+  margin-bottom: 15px;
+  color: #1E3A8A;
+}
+
+.header p {
+  margin-bottom: 5px;
+  font-size: 1rem;
+}
+
+/* Stats Cards */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  flex: 1;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  font-weight: bold;
+}
+
+.card.warning {
+  background-color: #F59E0B;
+  color: white;
+}
+
+/* Table Section */
+.table-container {
+  max-width: 1000px;
+  margin: 20px auto 40px;
+  overflow-x: auto;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #1E3A8A;
+  color: white;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Status Tags */
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.85rem;
+}
+
+.status.present {
+  background-color: #1ED900;
+}
+
+.status.late {
+  background-color: #F59E0B;
+}
+
+.status.pending {
+  background-color: #DE0000;
+}
+
+/* Buttons */
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.btn.proceed {
+  background-color: #1ED900;
+}
+
+.btn.cancel {
+  background-color: #DE0000;
+}
+
+/* Student registration styling*/
+
+/* Boxed Sections */
+.section-box {
+  background: white;
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.section-box h2 {
+  color: #1E3A8A;
+  margin-bottom: 15px;
+}
+
+/* Table reuse from before */
+.section-box table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.section-box th, .section-box td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.section-box thead {
+  background-color: #1E3A8A;
+  color: white;
+}
+
+.section-box tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Extra buttons */
+.btn.warning {
+  background-color: #F59E0B;
+  cursor: not-allowed;
+}

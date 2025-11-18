@@ -1,0 +1,14 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+<div style="max-width:600px;margin:20px auto;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:18px;">
+  <h2 style="margin-top:0;color:#1E3A8A;">Student Login</h2>
+  <p class="muted">Please sign in with your name and student ID.</p>
+  <form method="post" class="row" style="display:grid;gap:10px;">
+    <input name="name" placeholder="Full Name" required>
+    <input name="student_id" placeholder="Student ID" required>
+    <button class="btn proceed" style="background:#1ED900;color:#fff;border:none;padding:10px 14px;border-radius:8px;">Continue</button>
+  </form>
+</div>
+{% endblock %}

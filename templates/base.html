@@ -1,0 +1,47 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusConnect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <header style="background:#1E3A8A;color:#fff;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;">
+    <div><strong>CampusConnect</strong></div>
+    
+<nav style="display:flex;gap:14px;">
+  <a href="{{ url_for('index') }}" style="color:#fff;text-decoration:none;">Home</a>
+  <a href="{{ url_for('search') }}" style="color:#fff;text-decoration:none;">Course Search</a>
+  <a href="{{ url_for('my_courses') }}" style="color:#fff;text-decoration:none;">My Courses</a>
+  {% if session.get('student_id') %}
+    <a href="{{ url_for('billing') }}" style="color:#fff;text-decoration:none;">Billing</a>
+  {% endif %}
+  {% if session.get('is_admin') %}
+    <a href="{{ url_for('admin_dashboard') }}" style="color:#fff;text-decoration:none;">Admin Dashboard</a>
+  {% endif %}
+  {% if session.get('student_id') or session.get('is_admin') %}
+    <a href="{{ url_for('logout') }}" style="color:#fff;text-decoration:none;">Logout</a>
+  {% else %}
+    <a href="{{ url_for('login') }}" style="color:#fff;text-decoration:none;">Student Login</a>
+    <a href="{{ url_for('admin_login') }}" style="color:#fff;text-decoration:none;">Admin Login</a>
+  {% endif %}
+</nav>
+
+  </header>
+  <main style="max-width:1100px;margin:20px auto;padding:0 16px;">
+    {% with messages = get_flashed_messages(with_categories=True) %}
+      {% if messages %}
+        <div style="display:grid;gap:8px;margin:10px 0;">
+          {% for cat, msg in messages %}
+            <div style="padding:10px 12px;border-radius:8px;background:#fff;border:1px solid #e5e7eb;">
+              {{ msg }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
