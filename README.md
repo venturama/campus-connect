@@ -1,0 +1,1 @@
+Windows quick start:\n\npython -m venv .venv\n.venv\Scripts\activate\npip install -r requirements.txt\npython app.py\n\nOpen http://127.0.0.1:5000\nAdmin: admin / admin123\n
